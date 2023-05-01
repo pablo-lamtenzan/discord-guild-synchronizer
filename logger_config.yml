@@ -1,0 +1,18 @@
+version: 1
+formatters:
+  basic_formater:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: basic_formater
+    stream: ext://sys.stderr
+loggers:
+  coro_log:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [console]
