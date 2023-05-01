@@ -104,7 +104,6 @@ class Channel(Http):
                         msg['tts'],
                         msg['content']
                     )
-                    print('1:', m._id)
                 else:
                     m = Message(
                         self._clientUsername,
@@ -123,7 +122,6 @@ class Channel(Http):
                         true_id=msg['id'],
                         true_username=author['username'],
                     )
-                    print('2:', m._id)
                 if cache is True:
                     self.cachedMessages.append(m)
                 self._logger.info(
@@ -180,3 +178,9 @@ class Channel(Http):
             if found is False:
                 await msg_other.relay(self._id)
         channel.clearCache()
+
+    def __eq__(self: _Self, other: _Self) -> bool:
+        return self.name == other.name
+
+    def __ne__(self: _Self, other: _Self) -> bool:
+        return not self.__eq__(other)

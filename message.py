@@ -175,8 +175,6 @@ class Message(Http):
             )
 
     def __eq__(self: _Self, other: _Self) -> bool:
-        print('\neq self  ->', self._id, self._channelId, self._username, self._timestamp)
-        print('eq other ->', other._id, other._channelId, other._username, other._timestamp)
         return (
             self._id == other._id
             and self._username == other._username

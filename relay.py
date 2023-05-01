@@ -31,16 +31,9 @@ async def main(client_username: str, logger: Logger, header):
     async with aio.ClientSession() as session:
         # Testing
         guildOne = Guild(client_username, session, header, logger, sys.argv[1])
+        #await guildOne.createChannel('test22')
         guildTwo = Guild(client_username, session, header, logger, sys.argv[2])
-        ch1 = None
-        ch2 = None
-        async for chan in guildOne.getChannels():
-            if chan._id == '1101868648349577276':
-                ch1 = chan
-            elif chan._id == '1101871626007621743':
-                ch2 = chan
-        if ch1 is not None and ch2 is not None:
-            await ch1.sync(ch2)
+        await guildOne.sync(guildTwo)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
